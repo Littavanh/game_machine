@@ -1,0 +1,3 @@
+api requirement:
+1. loadUser
+2. DeleteRole ("statusCode": 200,"isSuccess": true,"message": "Success") ແຕ່ຂໍ້ມູນຍັງຢູ່

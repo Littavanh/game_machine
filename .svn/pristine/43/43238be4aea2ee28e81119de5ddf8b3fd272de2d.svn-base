@@ -1,0 +1,17 @@
+<?php
+$tokenkey = $_SESSION['gm_tokenkey'];
+
+function LoadDeviceType($tokenkey,$api_url)
+{
+    $message='';
+    
+    $urlRoute = $api_url.'Devices/LoadDeviceType';
+
+   $jsonData = array(
+       'tokenKey' => $tokenkey
+   );
+   $arr = callAPI($jsonData, $urlRoute);    
+   return $arr;
+}
+
+?>

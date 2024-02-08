@@ -1,0 +1,147 @@
+<?php
+$tokenkey = $_SESSION['settokenkey'];
+
+?>
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>ສິດຜູ້ໃຊ້</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">ໜ້າຫຼັກ</a></li>
+                    <li class="breadcrumb-item active ">ຈັດການຂໍ້ມູນພື້ນຖານ</li>
+                    <li class="breadcrumb-item active ">ສິດຜູ້ໃຊ້</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg-New">
+                        <i class="fas fa-plus-circle"></i> ເພີ່ມ</button>
+                </div>
+                <!-- /.card-header -->
+                <div class="modal fade" id="modal-lg-New">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">ເພີ່ມສິດຜູ້ໃຊ້</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form method="post" action="?d=master/role" enctype="multipart/form-data">
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <label>ສິດຜູ້ໃຊ້</label>
+                                                <input type="input" Name="txtRole" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">ປິດ</button>
+                                    <button type="submit" name="btnSave" class="btn btn-primary">ບັນທືກ</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /.modal -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="example3" class="table table-bordered beautified_report">
+
+                                    <thead>
+                                        <tr>
+                                            <th>ລ/ດ</th>
+                                            <th>ສິດຜູ້ໃຊ້</th>
+                                            <th style="text-align:center">ເຄື່ອງມື</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $arr = LoadRoleList($tokenkey, $api_url);
+                                        $i = 1;
+                                        foreach ($arr as $data) {
+
+
+
+                                        ?>
+                                            <div class="modal fade modal-fullscreen" id="modal-lg-Edit<?= $data['roleId'] ?>" data-backdrop="false">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">ແກ້ໄຂສິດຜູ້ໃຊ້</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form method="post" action="?d=master/role" enctype="multipart/form-data">
+                                                            <div class="modal-body">
+                                                                <input type="hidden" name="txtRoleId" value="<?= $data['roleId'] ?>" class="form-control" autocomplete="off" />
+                                                                <div class="row col-md-12">
+                                                                    <div class="form-group col-md-6">
+                                                                        <label>ສິດຜູ້ໃຊ້</label>
+                                                                        <input type="text" name="txtRole" value="<?= $data['roleName'] ?>" class="form-control" autocomplete="off" />
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="modal-footer justify-content-between">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                <button type="submit" name="btnEdit" class="btn btn-primary">Update</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <tr>
+
+
+                                                <td><?= $data['roleId'] ?></td>
+                                                <td><?= $data['roleName'] ?></td>
+                                                <td align="center">
+                                                    <a href="#"><i class="fas fa-edit" data-toggle="modal" data-target="#modal-lg-Edit<?= $data['roleId'] ?>"></i></a>
+                                                    <a href="?d=master/role&del=<?= $data['roleId'] ?>" onclick="return confirm('ທ່ານຕ້ອງການລຶບແທ້ບໍ...?')"><i class="far fa-trash-alt"></i></a>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            $i++;
+                                        }  ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+</section>
+<!-- /.content -->

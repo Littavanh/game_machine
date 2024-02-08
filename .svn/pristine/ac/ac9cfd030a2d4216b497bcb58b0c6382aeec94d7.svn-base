@@ -1,0 +1,113 @@
+$(document).ready(function() {
+	var getLangSetID = $('#langID').val();
+	if (getLangSetID == "2") {
+		$('.mn_home').text('Dashboard');
+		$('.mn_contact').text('Contact us');
+		$('.mn_logout').text('Logout');
+		$('.mn_loginby').text('Login by:');
+		$('.mn_lang').text('Languages');
+		$('.mn_LA').text('LAO');
+		$('.mn_EN').text('ENG');
+
+		$('.mn_master').text('Master');
+		$('.mn_deviceType').text('Device Type');
+		$('.mn_info').text('Info');
+		$('.mn_user').text('User');
+		$('.mn_role').text('Role');
+		$('.mn_permission').text('Permission');
+		$('.mn_rolePermission').text('Role Permission');
+		
+		$('.mn_device').text('Device');
+		$('.mn_addNewDevice').text('Add New Device');
+		$('.mn_approveAddNewDevice').text('Approve Add New Device');
+	
+
+		$('.id').text('id');
+		$('.no').text('No');
+		$('.tools').text('Tools');
+		$('.tel').text('Tel');
+		$('.address').text('Address');
+		$('.userName').text('UserName');
+		$('.firstName').text('FirstName');
+		$('.lastName').text('LastName');
+		$('.fullName').text('FullName');
+		$('.pleaseSelect').text('---please select---');
+
+
+
+
+
+		$('.bt_add').text('Add');
+		$('.bt_save').text('Save');
+		$('.bt_edit').text('Edit');
+		$('.bt_close').text('Close');
+		$('.bt_update').text('Update');
+		$('.bt_delete').text('Delete');
+		
+	} else {		
+		
+		$('.mn_home').text('ໜ້າຫຼັກ');
+		$('.mn_contact').text('ຕິດຕໍ່ເຮົາ');
+		$('.mn_logout').text('ອອກລະບົບ');
+		$('.mn_loginby').text('ເຂົ້າລະບົບໂດຍ:');
+		$('.mn_lang').text('ພາສາ');
+		$('.mn_LA').text('ລາວ');
+		$('.mn_EN').text('ອັງກິດ');
+
+		$('.mn_master').text('ຈັດການຂໍ້ມູນ');
+		$('.mn_deviceType').text('ໝວດອຸປະກອນ');
+		$('.mn_info').text('ຂໍ້ມູນຮ້ານ');
+		$('.mn_user').text('ຜູ້ໃຊ້');
+		$('.mn_role').text('ສິດຜູ້ໃຊ້');
+		$('.mn_permission').text('ສິດເຂົ້າໃຊ້');
+		$('.mn_rolePermission').text('ກຳນົດສິດເຂົ້າໃຊ້');
+
+		$('.mn_device').text('ອຸປະກອນ');
+		$('.mn_addNewDevice').text('ເພີ່ມອຸປະກອນ');
+		$('.mn_approveAddNewDevice').text('ອະນຸມັດເພີ່ມອຸປະກອນ');
+
+
+		$('.id').text('ລະຫັດ');
+		$('.no').text('ລຳດັບ');
+		$('.tools').text('ເຄື່ອງມື');
+		$('.tel').text('ເບີໂທ');
+		$('.address').text('ທີ່ຢູ່');
+		$('.userName').text('ຊື່ຜູ້ໃຊ້');
+		$('.firstName').text('ຊື່');
+		$('.lastName').text('ນາມສະກຸນ');
+		$('.fullName').text('ຊື່ ແລະ ນາມສະກຸນ');
+		$('.pleaseSelect').text('---ກະລຸນາເລືອກ---');
+		$('.pleaseSelectp').text('---ກະລຸນາເລືອກແຂວງ---');
+		$('.pleaseSelectd').text('---ກະລຸນາເລືອກເມືອງ---');
+		$('.pleaseSelectv').text('---ກະລຸນາເລືອກບ້ານ---');
+
+		$('.deviceId').text('ລະຫັດອຸປະກອນ')
+		$('.deviceNo').text('ເລກອຸປະກອນ')
+		$('.deviceSN').text('ລະຫັດ SN ອຸປະກອນ')
+		$('.brand').text('ລຸ້ນ')
+		$('.model').text('ຍີ່ຫໍ້')
+		$('.details').text('ລາຍລະອຽດ')
+		$('.province').text('ແຂວງ')
+		$('.district').text('ເມືອງ')
+		$('.districtLa').text('ເມືອງ (ລາວ)')
+		$('.districtEN').text('ເມືອງ (ອັງກິດ)')
+		$('.village').text('ບ້ານ')
+		$('.villageLa').text('ບ້ານ (ລາວ)')
+		$('.villageEN').text('ບ້ານ (ອັງກິດ)')
+		$('.status').text('ສະຖານະ')
+		$('.remark').text('ໝາຍເຫດ')
+		$('.image').text('ຮູບພາບ')
+		$('.approver').text('ຜູ້ອະນຸມັດ')
+		$('.approverStatus').text('ສະຖານະການອະນຸດມັດ')
+		$('.approve').text('ອະນຸມັດ')
+
+
+		$('.bt_add').text('ເພີ່ມ');
+		$('.bt_save').text('ບັນທຶກ');
+		$('.bt_edit').text('ແກ້ໄຂ');
+		$('.bt_close').text('ປິດ');
+		$('.bt_update').text('ແກ້ໄຂ');
+		$('.bt_delete').text('ລົບ');
+	}
+
+});

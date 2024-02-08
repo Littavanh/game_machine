@@ -1,0 +1,298 @@
+<?php
+$tokenkey = $_SESSION['settokenkey'];
+
+?>
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>ອຸປະກອນ</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item active ">Device</li>
+
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg-New">
+                        <i class="fas fa-plus-circle"></i> Add</button>
+                </div>
+                <!-- /.card-header -->
+                <div class="modal fade" id="modal-lg-New">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add Device</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form method="post" action="?d=device/device" enctype="multipart/form-data">
+                                <div class="modal-body">
+                                    <div class="row">
+                                    <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Device ID</label>
+                                                <input type="text" name="txtdeviceId" class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Info</label>
+                                                <select class="form-control" name="cb_info">
+                                                    <option value="0">---ກະລຸນາເລືອກ---</option>
+                                                    <?php
+                                                    $info = LoadInfoList($tokenkey, $api_url);
+
+                                                    foreach ($info as $data) {
+                                                        // $selected = $rowc['type'] == $row['type'] ? "selected" : "";
+                                                    ?>
+                                                        <option value="<?= $data['infoId'] ?>" <?= $selected ?>><?= $data['infoName'] ?></option>
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Device No</label>
+                                                <input type="text" name="txtDeviceNo" class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Device SN</label>
+                                                <input type="text" name="txtDeviceSN" class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Device Type</label>
+                                                <select class="form-control" name="cb_deviceType">
+                                                    <option value="0">---ກະລຸນາເລືອກ---</option>
+                                                    <?php
+                                                    $deviceType = LoadDeviceType($tokenkey, $api_url);
+
+                                                    foreach ($deviceType as $data) {
+                                                        // $selected = $rowc['type'] == $row['type'] ? "selected" : "";
+                                                    ?>
+                                                        <option value="<?= $data['deviceTypeId'] ?>" <?= $selected ?>><?= $data['deviceTypeText'] ?></option>
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Brand</label>
+                                                <input type="text" name="txtBrand" class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Model</label>
+                                                <input type="text" name="txtModel" class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Details</label>
+                                                <input type="text" name="txtDetails" class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                <input type="text" name="txtAddress" class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Device Image</label>
+                                                <input type="text" name="txtDeviceImage" class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Province</label>
+                                                <select class="form-control select2" name="cboProvince" required="true" onChange="GetProID(this.value, 1)">
+                                                    <option value="">-- ກະລຸນາເລືອກ --</option>
+                                                    <?php
+                                                    $province = LoadProvinceList($tokenkey, $api_url);
+
+                                                    foreach ($province as $data) {
+                                                    ?>
+                                                        <option value="<?= $data['province_id'] ?>"><?= $data['province_name'] ?></option>
+                                                    <?php   } ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group" id="district1">
+                                                <label class="mms_district">District</label>
+                                                <select class="form-control select2" name="cboDistrict" required="true" onChange="GetDistrictID(this.value, 1)">
+                                                    <option value="0">-- ເລືອກແຂວງກ່ອນ --</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group" id="villageId1">
+                                                <label class="mms_village">Village</label>
+                                                <select class="form-control select2" name="cboVillage" required="true">
+                                                    <option value="0">-- ເລືອກເມືອງກ່ອນ --</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Device Status</label>
+                                                <select class="form-control" name="cb_deviceStatus">
+                                                    <option value="0">---ກະລຸນາເລືອກ---</option>
+                                                    <?php
+                                                    $deviceStatus = LoadDeviceStatus($tokenkey, $api_url);
+
+                                                    foreach ($deviceStatus as $data) {
+                                                        // $selected = $rowc['type'] == $row['type'] ? "selected" : "";
+                                                    ?>
+                                                        <option value="<?= $data['deviceStatusId'] ?>" <?= $selected ?>><?= $data['deviceStatusText'] ?></option>
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Remark</label>
+                                                <input type="text" name="txtRemark" class="form-control" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">ປິດ</button>
+                                    <button type="submit" name="btnSave" class="btn btn-primary">ບັນທືກ</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /.modal -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="example3" class="table table-bordered beautified_report">
+
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Info</th>
+                                            <th>Device No</th>
+                                            <th>Device SN</th>
+                                            <th>Device Type</th>
+                                            <th>Brand</th>
+                                            <th>Model</th>
+                                            <th>detail</th>
+                                            <th>address</th>
+                                            <th>Device Image</th>
+                                            <th>Remark</th>
+                                            <th>Status</th>
+                                            <th style="text-align:center">ເຄື່ອງມື</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $arr = LoadDeviceList($tokenkey, $deviceTypeId, $api_url);
+                                        $i = 1;
+                                        foreach ($arr as $data) {
+
+
+
+                                        ?>
+                                            <!-- <div class="modal fade modal-fullscreen" id="modal-lg-Edit<?= $data['roleId'] ?>" data-backdrop="false">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">ແກ້ໄຂອຸປະກອນ</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form method="post" action="?d=device/device" enctype="multipart/form-data">
+                                                            <div class="modal-body">
+                                                                <input type="hidden" name="txtRoleId" value="<?= $data['roleId'] ?>" class="form-control" autocomplete="off" />
+                                                                <div class="row col-md-12">
+                                                                    <div class="form-group col-md-6">
+                                                                        <label>ອຸປະກອນ</label>
+                                                                        <input type="text" name="txtRole" value="<?= $data['roleName'] ?>" class="form-control" autocomplete="off" />
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="modal-footer justify-content-between">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                <button type="submit" name="btnEdit" class="btn btn-primary">Update</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+
+                                                </div>
+
+                                            </div> -->
+
+
+                                            <tr>
+
+
+                                                <td><?= $i ?></td>
+                                                <td><?= $data['infoName'] ?></td>
+                                                <td><?= $data['deviceNo'] ?></td>
+                                                <td><?= $data['deviceSN'] ?></td>
+                                                <td><?= $data['deviceTypeText'] ?></td>
+                                                <td><?= $data['brand'] ?></td>
+                                                <td><?= $data['model'] ?></td>
+                                                <td><?= $data['detail'] ?></td>
+                                                <td><?= $data['address'] ?></td>
+                                                <td><?= $data['deviceImg'] ?></td>
+                                                <td><?= $data['remark'] ?></td>
+                                                <td><?= $data['deviceStatusText'] ?></td>
+
+                                                <td align="center">
+                                                    <a href="#"><i class="fas fa-edit" data-toggle="modal" data-target="#modal-lg-Edit<?= $data['deviceId'] ?>"></i></a>
+                                                    <a href="?d=device/device&del=<?= $data['deviceId'] ?>" onclick="return confirm('ທ່ານຕ້ອງການລຶບແທ້ບໍ...?')"><i class="far fa-trash-alt"></i></a>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            $i++;
+                                        }  ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+</section>
+<!-- /.content -->

@@ -1,0 +1,28 @@
+<?php
+require_once("../indexCode.php");
+$wharecause = $_GET['GetProID'];
+$divID = $_GET['divID'];
+// echo '<script>alert("divid: '.$divID.'")</script>';
+function LoadDistrictList($tokenkey, $wharecause, $api_url)
+{
+	$message = '';
+
+	$urlRoute = $api_url . 'Account/LoadDistrictList';
+
+	$jsonData = array(
+		'tokenKey' => $tokenkey,
+		"province_id" => $wharecause
+	);
+	$arr = callAPI($jsonData, $urlRoute);
+	return $arr;
+} ?>
+
+<label class="district">ເມືອງ</label>
+<select class="form-control select2" name="txtdistrictId<?= $divID ?>" required="true" onChange="this.form.submit()">
+	<?php
+	$district = LoadDistrictList($tokenkey, $wharecause, $api_url);
+	foreach ($district as $row) {
+	?>
+		<option value="<?= $row['district_id'] ?>" <?= $selected ?>><?= $row['districtname_la'] ?></option>
+	<?php } ?>
+</select>

@@ -1,0 +1,57 @@
+<?php
+$get_tokenkey = $_SESSION['gm_tokenKey'];
+
+
+
+if (isset($_POST["btnSave"])) {
+    $txtdeviceId = escape_string($_POST['txtdeviceId']);
+    $cb_info = escape_string($_POST['cb_info']);
+    $txtDeviceNo = escape_string($_POST['txtDeviceNo']);
+    $txtDeviceSN = escape_string($_POST['txtDeviceSN']);
+    $cb_deviceType = escape_string($_POST['cb_deviceType']);
+    $txtBrand = escape_string($_POST['txtBrand']);
+    $txtModel = escape_string($_POST['txtModel']);
+    $txtDetails = escape_string($_POST['txtDetails']);
+    $txtAddress = escape_string($_POST['txtAddress']);
+    $txtDeviceImage = escape_string($_POST['txtDeviceImage']);
+    $cboVillage = escape_string($_POST['txtvillageId1']);
+    $cb_deviceStatus = escape_string($_POST['cb_deviceStatus']);
+    $txtRemark = escape_string($_POST['txtRemark']);
+
+// echo '<script>alert("'.$txtdeviceId.'")</script>';
+// echo '<script>alert("'.$cb_info.'")</script>';
+// echo '<script>alert("'.$txtDeviceNo.'")</script>';
+// echo '<script>alert("'.$txtDeviceSN.'")</script>';
+// echo '<script>alert("'.$cb_deviceType.'")</script>';
+// echo '<script>alert("'.$txtBrand.'")</script>';
+// echo '<script>alert("'.$txtModel.'")</script>';
+// echo '<script>alert("'.$txtDetails.'")</script>';
+// echo '<script>alert("'.$txtAddress.'")</script>';
+// echo '<script>alert("'.$txtDeviceImage.'")</script>';
+// echo '<script>alert("'.$cboVillage.'")</script>';
+// echo '<script>alert("'.$cb_deviceStatus.'")</script>';
+// echo '<script>alert("'.$txtRemark.'")</script>';
+
+
+    $arr = AddDevice($tokenKey, $cb_info,$txtdeviceId, $txtDeviceNo, $txtDeviceSN, $cb_deviceType, $txtBrand, $txtModel, $txtDetails, $txtAddress, $txtDeviceImage, $cboVillage, $txtRemark, $cb_deviceStatus, $api_url);
+    $_SESSION['gm_api_message_show'] = $_SESSION['gm_message'];
+    $_SESSION['gm_api_statusCode'] = $_SESSION['gm_statusCode'];
+}
+if (isset($_POST["btnEdit"])) {
+    $txtRoleId = escape_string($_POST['txtRoleId']);
+    $txtRole = escape_string($_POST['txtRole']);
+
+
+    $arr = UpdateRole($get_tokenkey, $txtRoleId, $txtRole, $api_url);
+    $_SESSION['gm_api_message_show'] = $_SESSION['gm_message'];
+    $_SESSION['gm_api_statusCode'] = $_SESSION['gm_statusCode'];
+}
+if (isset($_GET["del"])) {
+    $txtdeviceId = $_GET["del"];
+$statusId = '';
+
+
+    $arr = DeleteDevice($get_tokenkey, $txtdeviceId,$statusId, $api_url);
+    $_SESSION['gm_api_message_show'] = $_SESSION['gm_message'];
+    $_SESSION['gm_api_statusCode'] = $_SESSION['gm_statusCode'];
+}
