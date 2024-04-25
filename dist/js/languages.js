@@ -72,6 +72,7 @@ $(document).ready(function() {
 		$('.mn_device').text('ອຸປະກອນ');
 		$('.mn_addNewDevice').text('ເພີ່ມອຸປະກອນ');
 		$('.mn_approveAddNewDevice').text('ອະນຸມັດເພີ່ມອຸປະກອນ');
+		$('.mn_deviceStatus').text('ປ່ຽນແປງສະຖານະອຸປະກອນ');
 
 
 		$('.id').text('ລະຫັດ');

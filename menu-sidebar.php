@@ -22,6 +22,7 @@ $mn_Mdevice = "";
 $mn_Mdevice1 = "";
 $mn_device = "";
 $mn_approveAddNewDevice = "";
+$mn_deviceStatus = "";
 
 $mn_Mreport="";
 $mn_Mreport1="";
@@ -77,6 +78,11 @@ else if ($_GET['d'] == 'device/approveAddNewDevice') {
   $mn_Mdevice = "menu-open";
   $mn_Mdevice1 = "active";
   $mn_approveAddNewDevice = "active";
+}
+else if ($_GET['d'] == 'device/deviceStatus') {
+  $mn_Mdevice = "menu-open";
+  $mn_Mdevice1 = "active";
+  $mn_deviceStatus = "active";
 }
 else if ($_GET['d'] == 'report/device') {
   $mn_Mreport = "menu-open";
@@ -208,6 +214,12 @@ else if ($_GET['d'] == 'report/deviceByAddress') {
               <a href="index.php?d=device/approveAddNewDevice" class="nav-link <?= $mn_approveAddNewDevice ?>">
                 <i class="far fa-circle nav-icon"></i>
                 <p class="mn_approveAddNewDevice">Approve Add New Device</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="index.php?d=device/deviceStatus" class="nav-link <?= $mn_deviceStatus ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p class="mn_deviceStatus">Device Status</p>
               </a>
             </li>
           </ul>

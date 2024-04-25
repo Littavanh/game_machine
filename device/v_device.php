@@ -200,7 +200,7 @@ $tokenkey = $_SESSION['settokenkey'];
                     <div class="col-md-12">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="example1" class="table table-bordered beautified_report">
+                                <table id="example3" class="table table-bordered beautified_report">
 
                                     <thead>
                                         <tr>
